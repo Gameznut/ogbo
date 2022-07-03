@@ -1,0 +1,25 @@
+module.exports={
+    selectOption : function (status, options) {
+        
+        return options.fn(this).replace(new RegExp('value=\"'+status+'\"'), '$&selected="selected"');
+    },
+    
+    isEmpty: function (obj) {
+        for(let key in obj) {
+            if(Object.prototype.hasOwnProperty.call(obj, key)) {
+                return false;
+            }
+        }
+        
+        return true;
+    },
+
+    isUserAuthenticated: function (req, res, next){
+        if (req.isAuthenticated()) {
+            next()
+        }
+        else{
+            res.redirect('/login')
+        }
+    }
+}
